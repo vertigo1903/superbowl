@@ -1,140 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Super Bowl LX x Bad Bunny 🏈🎶</title>
+  <meta charset="UTF-8">
+  <title>Bad Bunny Bowl ❤️</title>
 
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    background: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle, #8b0000, #1a0000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
 
-  #overlay {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  #overlay h1 {
-    font-size: 48px;
-    color: #1DB954;
-    animation: glow 1.8s infinite alternate;
-  }
-  @keyframes glow {
-    from { text-shadow: 0 0 20px #1DB954; }
-    to { text-shadow: 0 0 40px #1DB954; }
-  }
+    .top {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+      font-size: 22px;
+      font-weight: bold;
+      text-shadow: 0 0 12px red;
+    }
 
-  #countdown {
-    font-size: 40px;
-    margin: 15px 0;
-  }
+    #countdown {
+      font-size: 28px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px pink;
+    }
 
-  #spotifyPlayer {
-    width: 300px;
-    height: 80px;
-    border-radius: 12px;
-    margin-top: 15px;
-  }
+    .bb-photo {
+      width: 300px;
+      border-radius: 25px;
+      animation: pulseGlow 2.5s infinite ease-in-out;
+      margin-bottom: 20px;
+    }
 
-  .confetti {
-    position: fixed;
-    pointer-events: none;
-  }
-</style>
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 20px red, 0 0 40px darkred;
+      }
+      50% {
+        box-shadow: 0 0 35px crimson, 0 0 70px red;
+      }
+      100% {
+        box-shadow: 0 0 20px red, 0 0 40px darkred;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      color: red;
+      animation: float 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="overlay">
-  <h1>CLICK TO ENTER 🎧🔥</h1>
-</div>
+  <div class="top">
+    <div>BAD BUNNY BOWL</div>
+    <div>SUPERBOWL: PATRIOTS VS SEAHAWKS</div>
+  </div>
 
-<div id="countdown"></div>
+  <!-- ⏳ COUNTDOWN -->
+  <div id="countdown"></div>
 
-<img
-  src="https://i.ibb.co/pjTT4VrB/test-jpg.jpg"
-  alt="Bad Bunny"
-  style="width: 320px; border-radius: 20px;"
->
+  <!-- 🐰 IMAGE -->
+  <img
+    class="bb-photo"
+    src="https://i.ibb.co/pjTT4VrB/test-jpg.jpg"
+    alt="Bad Bunny"
+  >
 
-<!-- Spotify embed for a Bad Bunny track (preview/play) -->
-<iframe
-  id="spotifyPlayer"
-  src="https://open.spotify.com/embed/track/63ui2w3QJBp8xx0c1MJB2Z"
-  frameborder="0"
-  allow="encrypted-media"
-></iframe>
+  <!-- 🎵 SPOTIFY -->
+  <iframe
+    src="https://open.spotify.com/embed/track/6Xom58OOXk2SoU711L2IXO"
+    width="300"
+    height="80"
+    frameborder="0"
+    allow="encrypted-media">
+  </iframe>
 
-<script>
-  // ⏱ Countdown target: Super Bowl LX kickoff (February 8, 2026 @ 3:30 PM PST)
-  const targetTime = new Date("February 8, 2026 15:30:00 GMT-0800");
+  <script>
+    // ⏳ Countdown (24 hours from page open)
+    const eventTime = new Date();
+    eventTime.setHours(eventTime.getHours() + 24);
 
-  const countdownEl = document.getElementById("countdown");
-  let confettiDone = false;
+    const countdownEl = document.getElementById("countdown");
 
-  function updateCountdown() {
-    const now = new Date();
-    const diff = targetTime - now;
+    setInterval(() => {
+      const now = new Date();
+      const diff = eventTime - now;
 
-    if (diff <= 0) {
-      countdownEl.textContent = "🏈 IT’S KICKOFF! 🎉";
-      if (!confettiDone) launchConfetti();
-      return;
-    }
+      if (diff <= 0) {
+        countdownEl.textContent = "IT'S TIME 🔥🐰";
+        return;
+      }
 
-    const h = Math.floor(diff / 1000 / 60 / 60);
-    const m = Math.floor((diff / 1000 / 60) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-    countdownEl.textContent = `${h}h ${m}m ${s}s`;
-  }
+      const h = Math.floor(diff / 1000 / 60 / 60);
+      const m = Math.floor((diff / 1000 / 60) % 60);
+      const s = Math.floor((diff / 1000) % 60);
 
-  function startTimer() {
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
+      countdownEl.textContent = `${h}h ${m}m ${s}s`;
+    }, 1000);
 
-  function launchConfetti() {
-    confettiDone = true;
-    const colors = ["#FF005A","#00FFEA","#FFEA00","#FF00FF","#00FF00"];
-    for (let i = 0; i < 120; i++) {
-      const div = document.createElement("div");
-      div.className = "confetti";
-      div.style.width = Math.random()*8+4+"px";
-      div.style.height = div.style.width;
-      div.style.background = colors[Math.floor(Math.random()*colors.length)];
-      div.style.left = Math.random()*100+"vw";
-      div.style.top = "-10px";
-      document.body.appendChild(div);
+    // ❤️ Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      document.body.appendChild(heart);
 
-      const fall = div.animate([
-        { transform: `translateY(0) rotate(${Math.random()*360}deg)` },
-        { transform: `translateY(110vh) rotate(${Math.random()*720}deg)` }
-      ], { duration: Math.random()*2500+2000, easing: "ease-out" });
-
-      fall.onfinish = () => div.remove();
-    }
-  }
-
-  // Only start when user clicks
-  document.getElementById("overlay").addEventListener("click", () => {
-    document.getElementById("overlay").remove();
-    startTimer();
-  });
-</script>
+      setTimeout(() => heart.remove(), 6000);
+    }, 250);
+  </script>
 
 </body>
 </html>
