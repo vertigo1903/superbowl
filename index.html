@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAD BUNNY BOWL ❤️‍🔥</title>
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #8b0000, #ff1a1a, #ff4fd8);
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .side-left, .side-right {
+    position: fixed;
+    top: 50%;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px red;
+    opacity: 0.9;
+  }
+
+  .side-left {
+    left: -50px;
+    transform: translateY(-50%) rotate(-90deg);
+  }
+
+  .side-right {
+    right: -70px;
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .card {
+    background: rgba(0,0,0,0.45);
+    padding: 24px;
+    border-radius: 22px;
+    text-align: center;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 0 40px rgba(255,0,0,0.6);
+    z-index: 2;
+  }
+
+  h1 {
+    margin: 5px 0;
+    text-shadow: 0 0 12px red;
+  }
+
+  #countdown {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+
+  /* BAD BUNNY "PHOTO" (TENOR HOSTED – ALWAYS LOADS) */
+  .bb-photo {
+    width: 220px;
+    height: 280px;
+    margin: 15px auto;
+    border-radius: 18px;
+    background-image: url("https://media.tenor.com/FpJp0N8K1JAAAAAC/bad-bunny-badbunny.gif");
+    background-size: cover;
+    background-position: center;
+    animation: glow 2s infinite alternate;
+  }
+
+  @keyframes glow {
+    from { box-shadow: 0 0 15px red; }
+    to { box-shadow: 0 0 45px red; }
+  }
+
+  .gif {
+    width: 200px;
+    border-radius: 15px;
+    margin: 10px auto;
+  }
+
+  iframe {
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp linear forwards;
+    color: rgba(255,50,50,0.9);
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-120vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="side-left">BAD BUNNY BOWL</div>
+<div class="side-right">SUPERBOWL • PATRIOTS VS SEAHAWKS</div>
+
+<div class="card">
+  <h1>🐰 Bad Bunny Tomorrow 🏈</h1>
+
+  <div id="countdown">Loading...</div>
+
+  <!-- BAD BUNNY IMAGE (GUARANTEED) -->
+  <div class="bb-photo"></div>
+
+  <!-- DANCING GIF -->
+  <img
+    class="gif"
+    src="https://media.tenor.com/ZfJ5rj7rF3AAAAAC/bad-bunny-dance.gif"
+    alt="Bad Bunny dancing"
+  >
+
+  <!-- REAL SONG -->
+  <iframe
+    src="https://open.spotify.com/embed/track/6Xom58OOXk2SoU711L2IXO?autoplay=1"
+    width="100%"
+    height="80"
+    frameborder="0"
+    allow="autoplay; encrypted-media">
+  </iframe>
+
+  <p style="font-size:0.8rem; opacity:0.8;">
+    tap anywhere if sound doesn’t start ❤️
+  </p>
+</div>
+
+<script>
+  // COUNTDOWN
+  const target = new Date("February 8, 2026 20:00:00").getTime();
+
+  setInterval(() => {
+    const now = Date.now();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").innerHTML = "IT'S TIME 😭🔥🐰";
+      return;
+    }
+
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerHTML =
+      `${d}d ${h}h ${m}m ${s}s`;
+  }, 1000);
+
+  // HEARTS
+  function heart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = "❤️";
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.animationDuration = (4 + Math.random()*3) + "s";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 7000);
+  }
+
+  setInterval(heart, 300);
+</script>
+
+</body>
+</html>
