@@ -31,9 +31,9 @@
     }
 
     #countdown {
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 15px;
-      text-shadow: 0 0 10px pink;
+      text-shadow: 0 0 12px pink;
     }
 
     .bb-photo {
@@ -79,7 +79,7 @@
 
   <div class="top">
     <div>BAD BUNNY BOWL</div>
-    <div>SUPERBOWL: PATRIOTS VS SEAHAWKS</div>
+    <div>SUPER BOWL COUNTDOWN</div>
   </div>
 
   <!-- ⏳ COUNTDOWN -->
@@ -102,13 +102,12 @@
   </iframe>
 
   <script>
-    // ⏳ Countdown (24 hours from page open)
-    const eventTime = new Date();
-    eventTime.setHours(eventTime.getHours() + 24);
-
+    // 🏈 Super Bowl kickoff — ARIZONA (MST, UTC-7)
+    // Feb 8, 2026 @ 4:30 PM MST
+    const eventTime = new Date("2026-02-08T16:30:00-07:00");
     const countdownEl = document.getElementById("countdown");
 
-    setInterval(() => {
+    function updateCountdown() {
       const now = new Date();
       const diff = eventTime - now;
 
@@ -117,12 +116,17 @@
         return;
       }
 
-      const h = Math.floor(diff / 1000 / 60 / 60);
-      const m = Math.floor((diff / 1000 / 60) % 60);
-      const s = Math.floor((diff / 1000) % 60);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-      countdownEl.textContent = `${h}h ${m}m ${s}s`;
-    }, 1000);
+      countdownEl.textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
     // ❤️ Floating hearts
     setInterval(() => {
