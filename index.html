@@ -1,5 +1,136 @@
-<style>
-  .bb-photo {
-    background-image: url('badbunny.jpg');
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bad Bunny Bowl ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle, #8b0000, #1a0000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .top {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+      font-size: 22px;
+      font-weight: bold;
+      text-shadow: 0 0 12px red;
+    }
+
+    /* 🔥 PULSING GLOW IMAGE */
+    .bb-photo {
+      width: 300px;
+      border-radius: 25px;
+      animation: pulseGlow 2.5s infinite ease-in-out;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 20px red, 0 0 40px darkred;
+      }
+      50% {
+        box-shadow: 0 0 35px crimson, 0 0 70px red;
+      }
+      100% {
+        box-shadow: 0 0 20px red, 0 0 40px darkred;
+      }
+    }
+
+    #countdown {
+      font-size: 28px;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px pink;
+    }
+
+    .heart {
+      position: absolute;
+      color: red;
+      animation: float 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">
+    <div>BAD BUNNY BOWL</div>
+    <div>SUPERBOWL: PATRIOTS VS SEAHAWKS</div>
+  </div>
+
+  <!-- 🐰 BAD BUNNY IMAGE -->
+  <img
+    class="bb-photo" 
+src="https://i.ibb.co/pjTT4VrB/test-jpg.jpg" alt="Bad Bunny">
+  <!-- 🎵 MUSIC -->
+  <iframe
+    src="https://open.spotify.com/embed/track/6Xom58OOXk2SoU711L2IXO?autoplay=1"
+    width="300"
+    height="80"
+    frameborder="0"
+    allow="autoplay; encrypted-media">
+  </iframe>
+
+  <script>
+    // ⏳ Countdown (24 hours from open)
+    const eventTime = new Date();
+    eventTime.setHours(eventTime.getHours() + 24);
+
+    const countdownEl = document.getElementById("countdown");
+
+    setInterval(() => {
+      const now = new Date();
+      const diff = eventTime - now;
+
+      if (diff <= 0) {
+        countdownEl.textContent = "IT'S TIME 🔥🐰";
+        return;
+      }
+
+      const h = Math.floor(diff / 1000 / 60 / 60);
+      const m = Math.floor((diff / 1000 / 60) % 60);
+      const s = Math.floor((diff / 1000) % 60);
+
+      countdownEl.textContent = `${h}h ${m}m ${s}s`;
+    }, 1000);
+
+    // ❤️ Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 250);
+  </script>
+
+</body>
+</html>
